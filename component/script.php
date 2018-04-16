@@ -21,7 +21,7 @@
 $(document).ready(function() {
     $.toast({
         heading: 'Welcome to Mie admin',
-        text: 'Use the predefined ones, or specify a custom position object.',
+        text: 'Start your day with a smile :)',
         position: 'top-right',
         loaderBg: '#ff6849',
         icon: 'info',
