@@ -104,6 +104,39 @@ INSERT INTO ToppingPromo (topping_id, promo_id) values (8,13)
 INSERT INTO ToppingPromo (topping_id, promo_id) values (5,14)
 INSERT INTO ToppingPromo (topping_id, promo_id) values (7,14)
 
+Insert into OrderTopping (order_id, topping_id, topping_price) 
+values (1 , 1, 9200);
+Insert into OrderTopping (order_id, topping_id, topping_price) 
+values (1 , 2, 6500);
+Insert into OrderTopping (order_id, topping_id, topping_price) 
+values (1 , 3, 5000);
+Insert into OrderTopping (order_id, topping_id, topping_price) 
+values (2 , 2, 6500);
+Insert into OrderTopping (order_id, topping_id, topping_price) 
+values (2 , 3, 5000);
+Insert into OrderTopping (order_id, topping_id, topping_price) 
+values (3 , 2, 6500);
+Insert into OrderTopping (order_id, topping_id, topping_price) 
+values (4 , 4, 1700);
+Insert into OrderTopping (order_id, topping_id, topping_price) 
+values (4 , 5, 8800);
+Insert into OrderTopping (order_id, topping_id, topping_price) 
+values (5 , 1, 9200);
+Insert into OrderTopping (order_id, topping_id, topping_price) 
+values (5 , 2, 6500);
+Insert into OrderTopping (order_id, topping_id, topping_price) 
+values (5 , 3, 5000);
+
+INSERT INTO CustomerOrder (order_date, customer_name, total_price, total_discounted_price)
+VALUES (CURRENT_TIMESTAMP,'Matthew Kampret' , 0 , 0);
+INSERT INTO CustomerOrder (order_date, customer_name, total_price, total_discounted_price)
+VALUES (CURRENT_TIMESTAMP,'Matthew Bangsat' , 0 , 0);
+INSERT INTO CustomerOrder (order_date, customer_name, total_price, total_discounted_price)
+VALUES (CURRENT_TIMESTAMP,'Kampret Ariel' , 0 , 0);
+INSERT INTO CustomerOrder (order_date, customer_name, total_price, total_discounted_price)
+VALUES (CURRENT_TIMESTAMP,'Bangsat Ariel' , 0 , 0);
+INSERT INTO CustomerOrder (order_date, customer_name, total_price, total_discounted_price)
+VALUES (CURRENT_TIMESTAMP,'Matthew Taiks' , 0 , 0);
 ------------------------------------------------------------------------------------------
 CONTOH KASUS 
 --kremesan dan telor = 11% : 1875, kalo masing masing = 242 + 2060
