@@ -44,7 +44,7 @@ from
 		ToppingPromo.promo_id = Promo.ID
 where 
 	Promo.promo_status = 1
-order by promo_id,topping_id
+order by promo_id,topping_id asc
 
 insert into @tbl_temp2
 select *
@@ -55,7 +55,7 @@ where
 insert into @tbl_hasil
 select * from @tbl_temp
 where promo_id not in (select promo_id from @tbl_temp2)
-order by promo_id, topping_id
+order by promo_id, topping_id asc
 
 -- lakukan perhitungan promo yang terbaik
 select top 1
@@ -66,7 +66,7 @@ from
 group by
 	promo_id
 order by 
-	total_topping_dalam_promo
+	total_topping_dalam_promo desc
 
 exec cariPromo '1,2,3'
 
