@@ -271,4 +271,4 @@ as
 	select * from @tempDiskonAkhir
 	select * from @DiskonAkhir
 
-exec cariPromoTerbesar '7,8,9'
+exec cariPromoTerbesar '1,3,5,7,8,9'
