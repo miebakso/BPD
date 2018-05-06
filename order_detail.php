@@ -30,27 +30,27 @@
                             <h3 class="box-title">Recent sales</h3>
                             <div class="table-responsive">
                                 <?php 
-                                    
-                                    $result = $conn->query("exec findAllOrder");
+                                    $result = $conn->query("exec findOrderDetail ".$_GET['order_id']);
+                                    $no = 1;
                                 ?>
                                 <table class="table ">
                                     <thead>
                                         <tr>
-                                            <th>Customer Name</th>
-                                            <th>Date</th>
-                                            <th>Total Price</th>
-                                            <th>Price After Discount</th>
-                                            <th>Detail</th>
+                                            <th>No</th>
+                                            <th>Topping</th>
+                                            <th>Harga Saat Order</th>
+                                            <th>Discont Saat Order (%)</th>
+                                            <th>Harga Akhir</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php foreach ($result as $order){ ?>
                                             <tr>
-                                                <td class="txt-oflo"><?= $order['customer_name'] ?></td>
-                                                <td><?= $order['order_date'] ?></td>
-                                                <td class="txt-oflo"><?= $order['total_price'] ?></td>
-                                                <td><span class="text-success"><?= $order['total_discounted_price'] ?></span></td>
-                                                <td><a href="order_detail.php?order_id=<?= $order['id'] ?>">Click for detail</td>
+                                                <td class="txt-oflo"><?= $no++ ?></td>
+                                                <td><?= $order['name'] ?></td>
+                                                <td class="txt-oflo"><?= $order['topping_price'] ?></td>
+                                                <td><span class="text-success"><?= $order['discount'] ?></span></td>
+                                                <td><?= $order['topping_price']-($order['topping_price']*$order['discount']/100) ?></td>
                                             </tr>
                                         <?php }?>
                                     </tbody>

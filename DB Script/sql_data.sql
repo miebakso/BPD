@@ -37,7 +37,8 @@ CREATE TABLE OrderTopping(
 	ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	order_id INT NOT NULL,
 	topping_id INT NOT NULL,
-	topping_price float NOT NULL
+	topping_price float NOT NULL,
+	discount INT
 )
 
 CREATE TABLE ToppingPromo(
@@ -45,6 +46,7 @@ CREATE TABLE ToppingPromo(
 	topping_id INT NOT NULL,
 	promo_id INT NOT NULL
 )
+
 ------------------------------------------------------------------------------------------
 DROP
 ------------------------------------------------------------------------------------------
@@ -113,12 +115,12 @@ INSERT INTO ToppingPromo (topping_id, promo_id) values (8,13)
 INSERT INTO ToppingPromo (topping_id, promo_id) values (5,14)
 INSERT INTO ToppingPromo (topping_id, promo_id) values (7,14)
 
-Insert into OrderTopping (order_id, topping_id, topping_price) 
-values (1 , 1, 9200);
-Insert into OrderTopping (order_id, topping_id, topping_price) 
-values (1 , 2, 6500);
-Insert into OrderTopping (order_id, topping_id, topping_price) 
-values (1 , 3, 5000);
+Insert into OrderTopping (order_id, topping_id, topping_price, discount) 
+values (1 , 1, 9200, 10);
+Insert into OrderTopping (order_id, topping_id, topping_price, discount) 
+values (1 , 2, 6500, 10);
+Insert into OrderTopping (order_id, topping_id, topping_price, discounts) 
+values (1 , 3, 5000, 30);
 Insert into OrderTopping (order_id, topping_id, topping_price) 
 values (2 , 2, 6500);
 Insert into OrderTopping (order_id, topping_id, topping_price) 
@@ -146,6 +148,8 @@ INSERT INTO CustomerOrder (order_date, customer_name, total_price, total_discoun
 VALUES (CURRENT_TIMESTAMP,'Bangsat Ariel' , 0 , 0);
 INSERT INTO CustomerOrder (order_date, customer_name, total_price, total_discounted_price)
 VALUES (CURRENT_TIMESTAMP,'Matthew Taiks' , 0 , 0);
+
+INSERT INTO
 
 ------------------------------------------------------------------------------------------
 CONTOH KASUS 
