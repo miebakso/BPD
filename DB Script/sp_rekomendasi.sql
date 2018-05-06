@@ -92,7 +92,7 @@ from
 	@tbl_topping_rekomend_2 as temp
 group by 
 	topping_id
-order by jumlah
+order by jumlah desc
 
 --select * from OrderTopping
 --select * from CustomerOrder
