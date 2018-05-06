@@ -79,10 +79,10 @@
                                         <tr>
                                             <td>'.$topping['name'].'</td>
                                             <td>'.$topping['price'].'</td>';
-                                        if($topping['status']=1) {
+                                        if($topping['status']==1) {
                                             echo '<td class="success"><center><b>Active</b></center></td>';
                                         } else {
-                                            echo '<td class="danger">Inactive</td>';
+                                            echo '<td class="danger"><center><b>Inactive</b></center></td>';
                                         }
                                         echo '
                                             
