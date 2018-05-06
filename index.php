@@ -9,7 +9,7 @@
         <?php require "component/navigation.php" ?>
         <!-- Sidebar -->
         <?php require "component/sidebar.php" ?>
-
+        
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">

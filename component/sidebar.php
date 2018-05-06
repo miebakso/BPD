@@ -8,7 +8,7 @@
                 <a href="order.php" class="waves-effect"><i class="fa fa-check-square-o fa-fw" aria-hidden="true"></i><span class="hide-menu">Order</span></a>
             </li>
             <li>
-                <a href="topping.php" class="waves-effect"><i class="fa fa-star fa-fw" aria-hidden="true"></i><span class="hide-menu">Topping</span></a>
+                <a href="topping.php?option=active" class="waves-effect"><i class="fa fa-star fa-fw" aria-hidden="true"></i><span class="hide-menu">Topping</span></a>
             </li>
             <li>
                 <a href="promo.php " class="waves-effect"><i class="fa fa-tags fa-fw" aria-hidden="true"></i><span class="hide-menu">Promo</span></a>

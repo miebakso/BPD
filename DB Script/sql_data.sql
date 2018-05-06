@@ -13,7 +13,8 @@ CREATE TABLE CustomerOrder (
 
 CREATE TABLE Topping (
 	ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	name varchar(100) NOT NULL,
+	name varchar(100) NOT NULL UNIQUE,
+	available int NOT NULL,
 	price float NOT NULL
 )
 
@@ -55,16 +56,16 @@ DELETE FROM ToppingPromo
 ------------------------------------------------------------------------------------------
 INSERT
 ------------------------------------------------------------------------------------------
-INSERT INTO Topping (name,price) values ( 'kornet' , 9200 )
-INSERT INTO Topping (name,price) values ( 'keju' , 6500 )
-INSERT INTO Topping (name,price) values ( 'pisang' , 5000 )
-INSERT INTO Topping (name,price) values ( 'sambal' , 1700 )
-INSERT INTO Topping (name,price) values ( 'coklat' , 8800 )
-INSERT INTO Topping (name,price) values ( 'tohai' , 2500 )
-INSERT INTO Topping (name,price) values ( 'sawi' , 1200 )
-INSERT INTO Topping (name,price) values ( 'telor' , 2200 )
-INSERT INTO Topping (name,price) values ( 'kremesan' , 10300 )
-INSERT INTO Topping (name,price) values ( 'daging cincang' , 10900 )
+INSERT INTO Topping (name,price,status) values ( 'kornet' , 9200, 1 )
+INSERT INTO Topping (name,price,status) values ( 'keju' , 6500 , 1)
+INSERT INTO Topping (name,price,status) values ( 'pisang' , 5000 , 1)
+INSERT INTO Topping (name,price,status) values ( 'sambal' , 1700 , 1)
+INSERT INTO Topping (name,price,status) values ( 'coklat' , 8800 , 1)
+INSERT INTO Topping (name,price,status) values ( 'tohai' , 2500 , 1)
+INSERT INTO Topping (name,price,status) values ( 'sawi' , 1200 , 1)
+INSERT INTO Topping (name,price,status) values ( 'telor' , 2200 , 1)
+INSERT INTO Topping (name,price,status) values ( 'kremesan' , 10300, 1 )
+INSERT INTO Topping (name,price,status) values ( 'daging cincang' , 10900, 1 )
 
 INSERT INTO Promo (name,promo_status,discount) values ( 'pisang' , 1, 13 )
 INSERT INTO Promo (name,promo_status,discount) values ( 'sawi', 1, 23 )
