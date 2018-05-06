@@ -1,6 +1,14 @@
 --jika membuat database baru , tambahkan 
 USE [DB_Mie] --contoh nama database adalah DB_Mie
 --------------------------------------------------------------------------------------------
+DROP
+drop table OrderTopping;
+drop table ToppingPromo;
+drop table CustomerOrder;
+drop table Topping;
+drop table promo;
+
+--------------------------------------------------------------------------------------------
 CREATE 
 --------------------------------------------------------------------------------------------
 CREATE TABLE CustomerOrder (
@@ -14,7 +22,7 @@ CREATE TABLE CustomerOrder (
 CREATE TABLE Topping (
 	ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	name varchar(100) NOT NULL UNIQUE,
-	available int NOT NULL,
+	status int NOT NULL,
 	price float NOT NULL
 )
 
@@ -29,7 +37,8 @@ CREATE TABLE OrderTopping(
 	ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	order_id INT NOT NULL,
 	topping_id INT NOT NULL,
-	topping_price float NOT NULL
+	topping_price float NOT NULL,
+	discount INT
 )
 
 CREATE TABLE ToppingPromo(
@@ -37,6 +46,7 @@ CREATE TABLE ToppingPromo(
 	topping_id INT NOT NULL,
 	promo_id INT NOT NULL
 )
+
 ------------------------------------------------------------------------------------------
 DROP
 ------------------------------------------------------------------------------------------
@@ -105,12 +115,12 @@ INSERT INTO ToppingPromo (topping_id, promo_id) values (8,13)
 INSERT INTO ToppingPromo (topping_id, promo_id) values (5,14)
 INSERT INTO ToppingPromo (topping_id, promo_id) values (7,14)
 
-Insert into OrderTopping (order_id, topping_id, topping_price) 
-values (1 , 1, 9200);
-Insert into OrderTopping (order_id, topping_id, topping_price) 
-values (1 , 2, 6500);
-Insert into OrderTopping (order_id, topping_id, topping_price) 
-values (1 , 3, 5000);
+Insert into OrderTopping (order_id, topping_id, topping_price, discount) 
+values (1 , 1, 9200, 10);
+Insert into OrderTopping (order_id, topping_id, topping_price, discount) 
+values (1 , 2, 6500, 10);
+Insert into OrderTopping (order_id, topping_id, topping_price, discounts) 
+values (1 , 3, 5000, 30);
 Insert into OrderTopping (order_id, topping_id, topping_price) 
 values (2 , 2, 6500);
 Insert into OrderTopping (order_id, topping_id, topping_price) 
@@ -152,6 +162,7 @@ insert into CustomerOrder
 select '2018-06-02','Sukawarna',15000,1000
 insert into CustomerOrder 
 select '2018-06-03','Orderan',8000,1000
+
 ------------------------------------------------------------------------------------------
 CONTOH KASUS 
 --kremesan dan telor = 11% : 1875, kalo masing masing = 242 + 2060
