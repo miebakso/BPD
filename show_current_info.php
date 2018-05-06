@@ -24,41 +24,54 @@
 
                 <!--row -->
                 <div class="row">
-               
-                        <div class="col-sm-6 col-md-offset-3">
-                            <div class="white-box">
-                                <?php 
-                                    $query = "select * from CustomerOrder where order_date >= '".$_POST ['start_date']."' AND order_date <= '".$_POST['end_date']."'";
-                                    $result = $conn->query($query);
-                                    $final = $result->fetch();
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <table class="table table-striped">
+                            <?php 
+                                $query = "select * from CustomerOrder where order_date >= '".$_POST ['start_date']."' AND order_date <= '".$_POST['end_date']."'";
+                                $result = $conn->query($query);
 
+                                echo '
+                                    <tr>
+                                        <th class="col-md-1"><center>ID</center></th>
+                                        <th class="col-md-2"><center>Order Date</center></th>
+                                        <th class="col-md-2"><center>Customer Name</center></th>
+                                        <th class="col-md-2"><center>Total Price</center></th>
+                                        <th class="col-md-2"><center>Discount</center></th>
+                                    </tr>
+                                ';
+                                    
+                                foreach ($result as $record) {
                                     echo '
                                         <tr>
-                                            <th>ID</th>
-                                            <th>Order Date</th>
-                                            <th>Customer Name</th>
-                                            <th>Total Price</th>
-                                            <th><center>Total Discounted Price</center></th>
-                                        </tr>
-                                    ';
-                                      
-                                    foreach ($result as $record) {
-                                        echo '
-                                            <tr>
-                                                <td>'.$record['ID'].'</td>
-                                                <td>'.$record['order_date'].'</td>
-                                                <td>'.$record['customer_name'].'</td>
-                                                <td class="success"><center><b>'.$record['total_price'].'</b></center></td>
-                                                <td class="danger"><center><b>'.$record['total_discounted_price'].'</b></center></td>
-                                                <td>'.$record['total_discounted_price'].'</td>
-                                            </tr>';
-                                    }
-                                         
-                                ?>
-                            </div>
-                        
-                    </div>
+                                            <td><center>'.$record['ID'].'</center></td>
+                                            <td><center>'.$record['order_date'].'</center></td>
+                                            <td><center>'.$record['customer_name'].'</center></td>
+                                            <td class="success"><center><b>'.$record['total_price'].'</b></center></td>
+                                            <td class="danger"><center><b>'.$record['total_discounted_price'].'</b></center></td>
+                                        </tr>';
+                                }
+                                /**$query = "exec hitungPendapatan '".$_POST['start_date']."' , '".$_POST['end_date']."'";
+                                $temp = $conn->query($query);
+                                $res = $temp->fetch();
+                                echo '<tr>
+                                    <td class="col-md-5 secondary"><b>Total price</b></td>
+                                    <td class="col-md-2 secondary"><b>'.$res['total'].'</b></td>
+                                </tr>' ;
+                                echo '<tr>
+                                    <td class="col-md-5 secondary"><b>Total discount</b></td>
+                                    <td class="col-md-2 secondary"><b>'.$res['discount'].'</b></td>
+                                </tr>' ;
+                                echo '<tr>
+                                    <td class="col-md-5 secondary"><b>Total profit</b></td>
+                                    <td class="col-md-2 secondary"><b>'.$res['total_profit'].'</b></td>
+                                </tr>' ;
+                                */
+                            ?>
+                            </table>
+                        </div>
                 </div>
+            </div>
 
             </div>
             <!-- /.container-fluid -->
