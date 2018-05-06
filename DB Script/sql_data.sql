@@ -138,6 +138,20 @@ INSERT INTO CustomerOrder (order_date, customer_name, total_price, total_discoun
 VALUES (CURRENT_TIMESTAMP,'Bangsat Ariel' , 0 , 0);
 INSERT INTO CustomerOrder (order_date, customer_name, total_price, total_discounted_price)
 VALUES (CURRENT_TIMESTAMP,'Matthew Taiks' , 0 , 0);
+
+insert into CustomerOrder 
+select '2018-06-01','Irvan',10000,1000
+insert into CustomerOrder 
+select '2018-06-02','Gendut',25000,1000
+insert into CustomerOrder 
+select '2018-06-03','Bureger king',8000,1000
+
+insert into CustomerOrder 
+select '2018-06-01','Matthew',7000,1000
+insert into CustomerOrder 
+select '2018-06-02','Sukawarna',15000,1000
+insert into CustomerOrder 
+select '2018-06-03','Orderan',8000,1000
 ------------------------------------------------------------------------------------------
 CONTOH KASUS 
 --kremesan dan telor = 11% : 1875, kalo masing masing = 242 + 2060
