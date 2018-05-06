@@ -1,6 +1,14 @@
 --jika membuat database baru , tambahkan 
 USE [DB_Mie] --contoh nama database adalah DB_Mie
 --------------------------------------------------------------------------------------------
+DROP
+drop table OrderTopping;
+drop table ToppingPromo;
+drop table CustomerOrder;
+drop table Topping;
+drop table promo;
+
+--------------------------------------------------------------------------------------------
 CREATE 
 --------------------------------------------------------------------------------------------
 CREATE TABLE CustomerOrder (
@@ -138,6 +146,7 @@ INSERT INTO CustomerOrder (order_date, customer_name, total_price, total_discoun
 VALUES (CURRENT_TIMESTAMP,'Bangsat Ariel' , 0 , 0);
 INSERT INTO CustomerOrder (order_date, customer_name, total_price, total_discounted_price)
 VALUES (CURRENT_TIMESTAMP,'Matthew Taiks' , 0 , 0);
+
 ------------------------------------------------------------------------------------------
 CONTOH KASUS 
 --kremesan dan telor = 11% : 1875, kalo masing masing = 242 + 2060

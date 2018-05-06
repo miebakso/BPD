@@ -30,6 +30,7 @@
                             <h3 class="box-title">Recent sales</h3>
                             <div class="table-responsive">
                                 <?php 
+                                    
                                     $result = $conn->query("exec findAllOrder");
                                 ?>
                                 <table class="table ">
