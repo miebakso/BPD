@@ -30,7 +30,7 @@ CREATE TABLE Promo(
 	ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	name varchar(100) NOT NULL,
 	promo_status INT NOT NULL,
-	discount FLOAT NOT NULL
+	discount float NOT NULL
 )
 
 CREATE TABLE OrderTopping(

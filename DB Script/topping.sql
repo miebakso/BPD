@@ -37,7 +37,7 @@ as
 		WHERE 
 			status=1
 	end
-	elseif(@option='inactive')
+	else if(@option='inactive')
 	begin
 		SELECT
 			*
