@@ -68,8 +68,7 @@
                                         <th>Name</th>
                                         <th>price</th>
                                         <th class="col-md-2"><center>status</center></th>
-                                        <th class="col-md-1"><center>Edit</center></td>
-                                        <th class="col-md-2"><center>Change Availability</center></th>
+                                        <th class="col-md-2"><center>Edit</center></td>
                                     </tr>
                                 ';
                                 
@@ -87,12 +86,10 @@
                                         echo '
                                             
                                             <td>
-                                                <a href="topping_update.php?id='.$topping['ID'].'">
+                                                <a href="topping-update.php?id='.$topping['ID'].'">
                                                     <center><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></center>
                                                 </a>
                                             </td>
-                                            
-                                            <td>asdasdas</td>
                                         </tr>
                                     ';
                                 }
