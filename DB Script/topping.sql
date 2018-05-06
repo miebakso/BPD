@@ -1,5 +1,5 @@
 
-# INSERT ############################################
+# INSERT ################################################################################
 
 CREATE PROCEDURE insert_topping
 	@name varchar(100),
@@ -23,7 +23,7 @@ as
 	end
 
 
-# SELECT ############################################
+# SELECT ################################################################################
 	
 CREATE PROCEDURE select_topping
 	@option varchar(100)
@@ -54,7 +54,7 @@ as
 			Topping
 	end
 
-# INACTIVE or ACTIVE ############################################
+# INACTIVE or ACTIVE #######################################################################
 
 CREATE PROCEDURE availability_topping
 	@id int,
@@ -79,3 +79,40 @@ as
 			ID = @id
 	end
 
+# FING BY ID  ################################################################################
+
+CREATE PROCEDURE find_topping_by_id 
+	@id int
+as
+	SELECT
+		*
+	FROM
+		Topping
+	WHERE
+		ID = @id
+
+
+# FING BY ID  ################################################################################
+
+CREATE PROCEDURE update_topping
+	@id int,
+	@name varchar(100),
+	@price float,
+	@status int
+as
+	if(@name=null OR @name='')
+	begin
+		SELECT
+			'UPDATE FAILED, name field is required.' as state
+	end
+	else if(@price=null OR @price<=0)
+	begin
+		SELECT
+			'UPDATE FAILED, price field is required and must be greater than 0.' as state
+	end
+	else 
+	begin
+		UPDATE Topping SET name=@name, price=@price, status=@status WHERE ID = @id
+		SELECT
+			'UPDATE SUCCESS!' as state
+	end

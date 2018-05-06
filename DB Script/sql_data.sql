@@ -14,7 +14,7 @@ CREATE TABLE CustomerOrder (
 CREATE TABLE Topping (
 	ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	name varchar(100) NOT NULL UNIQUE,
-	available int NOT NULL,
+	status int NOT NULL,
 	price float NOT NULL
 )
 
