@@ -28,8 +28,10 @@
                         <div class="white-box">
                             <table class="table table-striped">
                             <?php 
-                                $query = "select * from CustomerOrder where order_date >= '".$_POST ['start_date']."' AND order_date <= '".$_POST['end_date']."'";
+                                $query = "exec show_customer_order '".$_POST['start_date']."' , '".$_POST['end_date']."'";
+                                echo $query;
                                 $result = $conn->query($query);
+                                
 
                                 echo '
                                     <tr>
@@ -50,10 +52,10 @@
                                             <td class="success"><center><b>'.$record['total_price'].'</b></center></td>
                                             <td class="danger"><center><b>'.$record['total_discounted_price'].'</b></center></td>
                                         </tr>';
-                                }
-                                /**$query = "exec hitungPendapatan '".$_POST['start_date']."' , '".$_POST['end_date']."'";
+                                }/**
+                                $query = "exec hitungPendapatan '".$_POST['start_date']."' , '".$_POST['end_date']."'";
                                 $temp = $conn->query($query);
-                                $res = $temp->fetch();
+                                $res = $temp->fetch();*/
                                 echo '<tr>
                                     <td class="col-md-5 secondary"><b>Total price</b></td>
                                     <td class="col-md-2 secondary"><b>'.$res['total'].'</b></td>
@@ -66,7 +68,7 @@
                                     <td class="col-md-5 secondary"><b>Total profit</b></td>
                                     <td class="col-md-2 secondary"><b>'.$res['total_profit'].'</b></td>
                                 </tr>' ;
-                                */
+                                
                             ?>
                             </table>
                         </div>
