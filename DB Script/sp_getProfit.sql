@@ -18,7 +18,7 @@ alter procedure hitungPendapatan
 	from	
 		CustomerOrder
 	where 
-		order_date > @from_date AND order_date < @end_date
+		order_date >= @from_date AND order_date <= @end_date
 	
 	-- hitung total_price setiap rekord
 	select 
