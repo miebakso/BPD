@@ -29,7 +29,6 @@
                             <table class="table table-striped">
                             <?php 
                                 $query = "exec show_customer_order '".$_POST['start_date']."' , '".$_POST['end_date']."'";
-                                echo $query;
                                 $result = $conn->query($query);
                                 
 
@@ -52,23 +51,25 @@
                                             <td class="success"><center><b>'.$record['total_price'].'</b></center></td>
                                             <td class="danger"><center><b>'.$record['total_discounted_price'].'</b></center></td>
                                         </tr>';
-                                }/**
+                                }
                                 $query = "exec hitungPendapatan '".$_POST['start_date']."' , '".$_POST['end_date']."'";
-                                $temp = $conn->query($query);
-                                $res = $temp->fetch();*/
-                                echo '<tr>
-                                    <td class="col-md-5 secondary"><b>Total price</b></td>
-                                    <td class="col-md-2 secondary"><b>'.$res['total'].'</b></td>
-                                </tr>' ;
-                                echo '<tr>
-                                    <td class="col-md-5 secondary"><b>Total discount</b></td>
-                                    <td class="col-md-2 secondary"><b>'.$res['discount'].'</b></td>
-                                </tr>' ;
-                                echo '<tr>
-                                    <td class="col-md-5 secondary"><b>Total profit</b></td>
-                                    <td class="col-md-2 secondary"><b>'.$res['total_profit'].'</b></td>
-                                </tr>' ;
                                 
+                                $temp = $conn->query($query);
+                                $temp->nextRowset();
+                                $res = $temp->fetch();
+
+                                echo '<tr>
+                                    <td colspan="4" class="secondary"><center><b>Total Price</b></center></td>
+                                    <td colspan="1" class="secondary"><center><b>'.$res['total'].'</b></center></td>
+                                </tr>' ;
+                                echo '<tr>
+                                    <td colspan="4" class="secondary"><center><b>Total Discount</b></center></td>
+                                    <td colspan="1" class="secondary"><center><b>'.$res['discount'].'</b></center></td>
+                                </tr>' ;
+                                echo '<tr>
+                                    <td colspan="4" class="secondary"><center><b>Total Profit</b></center></td>
+                                    <td colspan="1" class="secondary"><center><b>'.$res['total_profit'].'</b></center></td>
+                                </tr>' ;
                             ?>
                             </table>
                         </div>
