@@ -183,3 +183,39 @@ select * from Promo
 SELECT * from ToppingPromo having count(promo_id)  > 1
 select sum(Topping.price) from ToppingPromo inner join Topping where ToppingPromo.topping_id = Topping.id group by ToppingPromo.promo_id
 dll
+
+
+
+--------------------------------------------------------------------------------------------
+--TABEL-TABEL GLOBAL UNTUK RECURSIVE PENCARIAN PROMO TERBAIK
+create table pesananRec(
+	guid varchar(255),
+	idTopping int,
+	harga int
+)
+
+create table tempRec(
+	guid varchar(255),
+	idPromo int,
+	idTopping int,
+	hargaAkhir int
+)
+
+create table PromoValid(
+	guid varchar(255),
+	idPromo int,
+	idTopping int,
+	hargaAkhir int
+)
+
+create table hasilRec(
+	guid varchar(255),
+	idPromo int,
+	idTopping int,
+	hargaAkhir int
+)
+
+create table totalHargaRec(
+	guid varchar(255),
+	total int
+)

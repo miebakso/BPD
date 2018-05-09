@@ -141,5 +141,12 @@
     <!-- /#wrapper 12321321-->
     <!-- jQuery -->
     <?php require "component/script.php" ?>
+
+    <script>
+        $.post( "test2.php")
+            .done(function( data ) {
+                alert( "Data Loaded: " + data );
+            });
+    </script>
 </body>
 </html>
