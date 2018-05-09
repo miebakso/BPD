@@ -23,6 +23,8 @@
                         <a href="promo.php?option=all" class="btn btn-info pull-left m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">ALL</a> 
                         <a href="promo.php?option=active" class="btn btn-success pull-left m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">ACTIVE</a>
                         <a href="promo.php?option=inactive" class="btn btn-danger pull-left m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">INACTIVE</a>
+
+                        <a href="promo-create.php" class="btn btn-success pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">CREATE</a>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -33,7 +35,7 @@
                         <div class="white-box">
                             <table class="table table-striped">
                             <?php
-                                $result = $conn->query("exec select_promo '".$_GET['option']."'");
+                                $result = exec_query("exec select_promo '".$_GET['option']."'");
                        
                                 echo '
                                     <tr>

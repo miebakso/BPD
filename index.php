@@ -18,9 +18,6 @@
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                         <h4 class="page-title">Report</h4> </div>
-                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        <a href="topping.php?option=all" class="btn btn-info pull-left m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">ALL</a> 
-                    </div>
                     <!-- /.col-lg-12 -->
                 </div>
 
@@ -48,7 +45,7 @@
                                         <input type="date" class="form-control" name="end_date">
                                     </div>
         
-                                    <button class="btn btn-success btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">CREATE</button>
+                                    <button class="btn btn-success btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">SHOW</button>
                                 </form>
                            
                         </div>
@@ -60,7 +57,8 @@
                         <div class="white-box">
                             <table class="table table-striped">
                                 <?php 
-                                $result = $conn->query("exec show_profit");
+                                $result = exec_query("exec show_profit");
+                                //exit(var_dump($result));
                                 echo '
                                     <tr>
                                         <th>Year</th>
@@ -72,20 +70,21 @@
                                 $prev_profit = -1;    
                                 foreach ($result as $record) {
                                     echo '
-                                        <tr>
-                                            <td>'.$record['year'].'</td>
-                                            <td>'.$record['name_of_month'].'</td>';
+                                    <tr>
+                                        <td>'.$record['year'].'</td>
+                                        <td>'.$record['name_of_month'].'</td>';
 
-                                        if($prev_profit==-1){
+                                    if($prev_profit==-1){
+                                        echo '<td class="success"><center><b>'.$record['profit'].'</b></center></td>';
+                                    }else{
+                                        if($prev_profit<$record['profit']){
                                             echo '<td class="success"><center><b>'.$record['profit'].'</b></center></td>';
                                         }else{
-                                            if($prev_profit<$record['profit']){
-                                                echo '<td class="success"><center><b>'.$record['profit'].'</b></center></td>';
-                                            }else{
-                                                echo '<td class="danger"><center><b>'.$record['profit'].'</b></center></td>';
-                                            }
+                                            echo '<td class="danger"><center><b>'.$record['profit'].'</b></center></td>';
                                         }
-                                        $prev_profit = $record['profit'];
+                                    }
+                                    echo '</tr>';
+                                    $prev_profit = $record['profit'];
                                 }
                                      
                                 ?>

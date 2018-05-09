@@ -38,13 +38,17 @@ CREATE TABLE OrderTopping(
 	order_id INT NOT NULL,
 	topping_id INT NOT NULL,
 	topping_price float NOT NULL,
-	discount INT
+	discount INT,
+	FOREIGN KEY (order_id) REFERENCES CustomerOrder(ID),
+	FOREIGN KEY (topping_id) REFERENCES Topping(ID)
 )
 
 CREATE TABLE ToppingPromo(
 	ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	topping_id INT NOT NULL,
-	promo_id INT NOT NULL
+	promo_id INT NOT NULL,
+	FOREIGN KEY (topping_id) REFERENCES Topping(ID),
+	FOREIGN KEY (promo_id) REFERENCES Promo(ID)
 )
 
 ------------------------------------------------------------------------------------------
@@ -76,6 +80,8 @@ INSERT INTO Topping (name,price,status) values ( 'sawi' , 1200 , 1)
 INSERT INTO Topping (name,price,status) values ( 'telor' , 2200 , 1)
 INSERT INTO Topping (name,price,status) values ( 'kremesan' , 10300, 1 )
 INSERT INTO Topping (name,price,status) values ( 'daging cincang' , 10900, 1 )
+
+Update Topping set status = 0 where name = 'daging cincang'
 
 INSERT INTO Promo (name,promo_status,discount) values ( 'pisang' , 1, 13 )
 INSERT INTO Promo (name,promo_status,discount) values ( 'sawi', 1, 23 )
@@ -119,7 +125,7 @@ Insert into OrderTopping (order_id, topping_id, topping_price, discount)
 values (1 , 1, 9200, 10);
 Insert into OrderTopping (order_id, topping_id, topping_price, discount) 
 values (1 , 2, 6500, 10);
-Insert into OrderTopping (order_id, topping_id, topping_price, discounts) 
+Insert into OrderTopping (order_id, topping_id, topping_price, discount) 
 values (1 , 3, 5000, 30);
 
 Insert into OrderTopping (order_id, topping_id, topping_price) 
@@ -158,11 +164,11 @@ insert into CustomerOrder
 select '2018-06-03','Bureger king',8000,1000
 
 insert into CustomerOrder 
-select '2018-06-01','Matthew',7000,1000
+select '2018-07-01','Matthew',7000,1000
 insert into CustomerOrder 
-select '2018-06-02','Sukawarna',15000,1000
+select '2018-07-02','Sukawarna',15000,1000
 insert into CustomerOrder 
-select '2018-06-03','Orderan',8000,1000
+select '2018-07-03','Orderan',8000,1000
 
 ------------------------------------------------------------------------------------------
 CONTOH KASUS 
@@ -178,3 +184,39 @@ select * from Promo
 SELECT * from ToppingPromo having count(promo_id)  > 1
 select sum(Topping.price) from ToppingPromo inner join Topping where ToppingPromo.topping_id = Topping.id group by ToppingPromo.promo_id
 dll
+
+
+
+--------------------------------------------------------------------------------------------
+--TABEL-TABEL GLOBAL UNTUK RECURSIVE PENCARIAN PROMO TERBAIK
+create table pesananRec(
+	guid varchar(255),
+	idTopping int,
+	harga int
+)
+
+create table tempRec(
+	guid varchar(255),
+	idPromo int,
+	idTopping int,
+	hargaAkhir int
+)
+
+create table PromoValid(
+	guid varchar(255),
+	idPromo int,
+	idTopping int,
+	hargaAkhir int
+)
+
+create table hasilRec(
+	guid varchar(255),
+	idPromo int,
+	idTopping int,
+	hargaAkhir int
+)
+
+create table totalHargaRec(
+	guid varchar(255),
+	total int
+)

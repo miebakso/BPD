@@ -22,3 +22,12 @@ as
 	where
 		order_id = @orderId
 
+------------------------------------------------------------------------------------
+--SP untuk mencari semua topping yang aktif
+create procedure findActiveTopping
+as
+
+	select
+		idTopping,nama
+	from
+		dbo.getActiveTopping()

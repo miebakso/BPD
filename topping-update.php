@@ -45,7 +45,7 @@
                                         </div>
                                         ';
                                     } else {
-                                        $result = $conn->query("exec find_topping_by_id ".$_GET['id']);
+                                        $result = exec_query("exec find_topping_by_id ".$_GET['id']);
                                         $final = $result->fetch();
 
                                         echo ' 
