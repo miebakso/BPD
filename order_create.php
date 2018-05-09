@@ -97,7 +97,7 @@
                         <div class="table-responsive">
                             <?php 
                                 //$result = exec_query("exec show_allActiveTopping");
-                                $result = exec_query("exec show_allActiveTopping");
+                                $result = exec_query("exec select_topping 'active'");
                             ?>
                             <form method="POST" action="order_create_final.php">
                                 <table class="table ">
@@ -111,19 +111,19 @@
                                     <tbody>
                                         <?php 
                                         //var_dump($result);
-                                        
                                         foreach ($result as $topping):?>
                                             <tr>
                                                 <td>
                                                     <label class="choice">
-                                                        <input type="checkbox" name="topping[]" value="<?= $topping['ID'] ?>">
+                                                        <input type="checkbox" name="topping[]" value="<?= $topping['ID'] ?>" <?php if(in_array($topping['ID'], $_POST['topping_fav'])) echo "checked";?>>
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </td>
                                                 <td><?= $topping['name'] ?></td>
                                                 <td><?= $topping['price'] ?></td>
                                             </tr>
-                                        <?php endforeach; ?>
+                                        <?php endforeach; 
+                                        ?>
                                     </tbody>
                                 </table>
                                 <button type="submit" class="btn btn-primary">Submit</button>
