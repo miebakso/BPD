@@ -1,7 +1,11 @@
 <html lang="en">
 
 <?php require "component/header.php" ?>
-
+<?php require "component/connection.php" ?>
+<?php
+    // insert customerOuder data 
+    //$result = exec_query("exec insert_customerOrder '".$_POST['name']."'");
+?>
 <body>
     
     <div id="wrapper">
@@ -10,52 +14,49 @@
         <!-- Sidebar -->
         <?php require "component/sidebar.php" ?>
 
-        <?php require "component/connection.php" ?>
-
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Order</h4> </div>
-                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12"> 
-                        <a href="order_create.php" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">CREATE</a>
+                        <h4 class="page-title">Order Form</h4> 
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!--row -->
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-8">
                         <div class="white-box">
-                            <h3 class="box-title">Recent sales</h3>
+                            <h3>REKOMENDASI MENU FAVOURITE</h3>
                             <div class="table-responsive">
                                 <?php 
-                                    $result = exec_query("exec findOrderDetail ".$_GET['order_id']);
-                                    $no = 1;
+                                    $result = exec_query("exec kombinasiToppingFavourite");
                                 ?>
                                 <table class="table ">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Topping</th>
-                                            <th>Harga Saat Order</th>
-                                            <th>Discont Saat Order (%)</th>
-                                            <th>Harga Akhir</th>
+                                            <th>Topping Name</th>
+                                            <th>Topping Price</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($result as $order){ ?>
+                                        <?php 
+                                        //var_dump($result);
+                                        foreach ($result as $topping){ ?>
                                             <tr>
-                                                <td class="txt-oflo"><?= $no++ ?></td>
-                                                <td><?= $order['name'] ?></td>
-                                                <td class="txt-oflo"><?= $order['topping_price'] ?></td>
-                                                <td><span class="text-success"><?= $order['discount'] ?></span></td>
-                                                <td><?= $order['topping_price']-($order['topping_price']*$order['discount']/100) ?></td>
+                                                <td><?= $topping['name'] ?></td>
+                                                <td><?= $topping['price'] ?></td>
                                             </tr>
                                         <?php }?>
                                     </tbody>
-                                </table> <a href="#">Check all the sales</a> 
+                                </table>
                             </div>
+                            <form>
+                                <input type="hidden" value="<?= $_POST['name']?>">
+                                <a href="order_create.php?option=yes" class="btn btn-info pull-left m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">MAU</a>
+                                <a href="order_create.php?option=no" class="btn btn-info pull-left m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">TIDAK</a>
+                            </form> 
+                            
                         </div>
                     </div>
                 </div>

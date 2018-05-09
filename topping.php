@@ -62,7 +62,7 @@
                         <div class="white-box">
                             <table class="table table-striped">
                                 <?php 
-                                $result = $conn->query("exec select_topping '".$_GET['option']."'");
+                                $result = exec_query("exec select_topping '".$_GET['option']."'");
                                 echo '
                                     <tr>
                                         <th>Name</th>

@@ -29,7 +29,7 @@
                             <table class="table table-striped">
                             <?php 
                                 $query = "exec show_customer_order '".$_POST['start_date']."' , '".$_POST['end_date']."'";
-                                $result = $conn->query($query);
+                                $result = exec_query($query);
                                 
 
                                 echo '
@@ -54,8 +54,8 @@
                                 }
                                 $query = "exec hitungPendapatan '".$_POST['start_date']."' , '".$_POST['end_date']."'";
                                 
-                                $temp = $conn->query($query);
-                                $temp->nextRowset();
+                                $temp = exec_query($query);
+                                ;
                                 $res = $temp->fetch();
 
                                 echo '<tr>

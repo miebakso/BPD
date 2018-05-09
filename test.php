@@ -3,7 +3,7 @@
 
    
 
-    $result = $conn->query("exec update_topping ".$id.",'".$name."',".$price.",".$status);
+    $result = exec_query("exec update_topping ".$id.",'".$name."',".$price.",".$status);
     $result->nextRowset();
     
     $final = $result->fetch();

@@ -57,7 +57,8 @@
                         <div class="white-box">
                             <table class="table table-striped">
                                 <?php 
-                                $result = $conn->query("exec show_profit");
+                                $result = exec_query("exec show_profit");
+                                //exit(var_dump($result));
                                 echo '
                                     <tr>
                                         <th>Year</th>
