@@ -10,7 +10,7 @@ as
 
 ------------------------------------------------------------------------------------
 --SP untuk mencari semua topping yang dipesan pada suatu order
-alter procedure findOrderDetail
+CREATE procedure findOrderDetail
 	@orderId int
 as
 	select 

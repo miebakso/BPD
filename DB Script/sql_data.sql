@@ -121,6 +121,7 @@ Insert into OrderTopping (order_id, topping_id, topping_price, discount)
 values (1 , 2, 6500, 10);
 Insert into OrderTopping (order_id, topping_id, topping_price, discounts) 
 values (1 , 3, 5000, 30);
+
 Insert into OrderTopping (order_id, topping_id, topping_price) 
 values (2 , 2, 6500);
 Insert into OrderTopping (order_id, topping_id, topping_price) 
