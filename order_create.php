@@ -10,6 +10,8 @@
         <!-- Sidebar -->
         <?php require "component/sidebar.php" ?>
 
+        <?php require "component/connection.php" ?>
+
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
@@ -23,22 +25,23 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <form>
+                            <form action="" method="POST">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                    <label for="exampleInputEmail1">Nama</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" name="nama" placeholder="Nama">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                    <label for="exampleInputEmail1">Pilih Topping</label>
+                                    <select class="form-control" name="pilih-topping">
+                                        <?php 
+                                        $result = $conn->query("exec findActiveTopping ");
+                                        $no = 1;
+                                        foreach($result as $order){?>
+
+                                        <option id="<?= $order['idTopping']?>"><?= $order['nama'] ?></option>
+                                        
+                                        <?php }?>
+                                    </select>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
@@ -56,6 +59,13 @@
     <!-- /#wrapper 12321321-->
     <!-- jQuery -->
     <?php require "component/script.php" ?>
+
+    <script>
+        $.post( "test2.php")
+            .done(function( data ) {
+                alert( "Data Loaded: " + data );
+            });
+    </script>
 </body>
 
 </html>
