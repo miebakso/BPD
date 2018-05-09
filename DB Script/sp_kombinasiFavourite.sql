@@ -81,11 +81,13 @@ order by
 select top 1 
 	@res = topping_id 
 from @tblRes
+where topping_id != ''
 
 -- kembalikan kombinasi topping dengan memanggil fungsi splitId()
 select
-	id
+	Topping.ID, Topping.name, Topping.price
 from
-	dbo.splitId(@res)
+	dbo.splitId(@res)as temp inner join Topping
+	on temp.id = Topping.ID
 
 exec kombinasiToppingFavourite
