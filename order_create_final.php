@@ -3,8 +3,11 @@
 <?php require "component/header.php" ?>
 <?php require "component/connection.php" ?>
 <?php
-    // insert customerOuder data 
-    //$result = exec_query("exec insert_customerOrder '".$_POST['name']."'");
+    
+    $customer_id = exec_query("exec get_last_customer_id");
+    //foreach($_POST['topping']as $_top){
+        
+    //}
 ?>
 <body>
     
@@ -31,6 +34,7 @@
                                 <?php 
                                     $topping = implode(',', $_POST['topping']);
                                     $result = exec_query("exec hitungHargaTotal '$topping'");
+                                    $diskon = exec_query("exec hitungHargaTotal '$topping'");
                                 ?>
                                 <div class="row">
                                     <div class="col-md-4"><h3>Total Harga</h3></div>
@@ -44,7 +48,8 @@
                                     <div class="col-md-4"><h3>Total Bayar</h3></div>
                                     <div class="col-md-8"><h3><center><?=''?></center></h3></div>
                                 </div>
-                               <button type="submit" class="btn btn-primary">SETUJU</button>
+                               <button type="submit" name="optionSetuju" class="btn btn-primary">SETUJU</button>
+                               <button type="submit" name="optionTdkSetuju" class="btn btn-primary">TIDAK</button>
                            </form>
                         </div>
                     </div>

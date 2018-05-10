@@ -1,7 +1,7 @@
 <html lang="en">
 
 <?php require "component/header.php" ?>
-
+<?php require "component/connection.php" ?>
 <head>
     <style>
     /* The container */
@@ -80,7 +80,7 @@
         <?php require "component/navigation.php" ?>
         <!-- Sidebar -->
         <?php require "component/sidebar.php" ?>
-        <?php require "component/connection.php" ?>
+        
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
@@ -115,7 +115,7 @@
                                             <tr>
                                                 <td>
                                                     <label class="choice">
-                                                        <input type="checkbox" name="topping[]" value="<?= $topping['ID'] ?>" <?php if(in_array($topping['ID'], $_POST['topping_fav'])) echo "checked";?>>
+                                                        <input type="checkbox" name="topping[]" value="<?= $topping['ID'] ?>" <?php if(in_array($topping['ID'], $_POST['topping_fav']) && $_POST['option']=='yes') echo "checked";?>>
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </td>
