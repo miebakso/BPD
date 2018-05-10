@@ -1,6 +1,6 @@
 <?php
 	try {
-		$conn = sqlsrv_connect('DESKTOP-8GFM4DQ\SQLEXPRESS', array(
+		$conn = sqlsrv_connect('DESKTOP-D12RCSK', array(
 			'Database' => 'DB_Mie',
 			'UID' => '',
 			'PWD' => ''
