@@ -1,4 +1,4 @@
-alter procedure findPromoRec(
+ALTER procedure [dbo].[findPromoRec](
 	@startID int,
 	@guid varchar(255),
 	@bigestID int
@@ -7,7 +7,6 @@ as
 	--DEBUG COMBINASI
 	--select * from tempRec
 	if(@startID <= @bigestID)begin 
-		
 		--Menyimpan id yang tidak akan dicek di cursor recursive berikutnya
 		declare @startIdRec int
 
@@ -22,7 +21,7 @@ as
 			where 
 				guid = @guid AND idPromo > @startID
 
-	
+
 		declare @curPromo int
 		open recPromo
 		
@@ -39,10 +38,16 @@ as
 				idTopping int
 			)
 
+			--tabel yang menyimpan toping" yang tidak terkena promo apa- apa
+			declare @tabelSisaTopping table(
+				idTopping int
+			)
+
 			--DEBUGG!!----------------------------------------------------------------------------
 			--select @curPromo as curPromo
 			while(@@FETCH_STATUS = 0)begin 
 				delete from @localTemp
+				delete from @tabelSisaTopping
 
 				--mencari total saat ini
 				select
@@ -94,21 +99,41 @@ as
 					where 
 						guid = @guid
 			
+					--masukkan topping yang belum mendapat diskon ke tempSisaTopping
+					insert into @tabelSisaTopping
+					select distinct 
+						idTopping
+					from
+						pesananRec
+					where
+						pesananRec.guid = @guid
+						AND
+						idTopping not in (select idTopping from tempRec)
+
 					--Harga topping lainnya yang tidak terkena diskon
 					select 
 						@tempSisa = sum (harga)
 					from
-						pesananRec
-					where
-						idTopping not in(select idTopping from tempRec) AND guid = @guid
-			
+						@tabelSisaTopping as sisa join pesananRec
+					on
+						sisa.idTopping = pesananRec.idTopping
+
 					if(@tempSisa is null)set @tempSisa = 0
 					if(@total > @tempTotal + @tempSisa)begin
-						delete from hasilRec where guid = @guid
-
+						delete from hasilRec where guid = @guid	
 						update totalHargaRec
 						set total = @tempTotal + @tempSisa
 						where guid = @guid
+
+						if(@tempSisa != 0)begin
+							insert into hasilRec
+							select
+								guid, NULL,pesananRec.idTopping, harga
+							from
+								@tabelSisaTopping as sisa join pesananRec
+							on
+								sisa.idTopping = pesananRec.idTopping
+						end
 
 						insert into hasilRec
 						select 
@@ -134,4 +159,3 @@ as
 
 	end
 
-exec findPromoMax '7,8,9'

@@ -46,7 +46,7 @@
                                     echo '
                                         <tr>
                                             <td><center>'.$record['ID'].'</center></td>
-                                            <td><center>'.$record['order_date'].'</center></td>
+                                            <td><center>'.$record['order_date']->format('Y-m-d').'</center></td>
                                             <td><center>'.$record['customer_name'].'</center></td>
                                             <td class="success"><center><b>'.$record['total_price'].'</b></center></td>
                                             <td class="danger"><center><b>'.$record['total_discounted_price'].'</b></center></td>
@@ -54,10 +54,9 @@
                                 }
                                 $query = "exec hitungPendapatan '".$_POST['start_date']."' , '".$_POST['end_date']."'";
                                 
-                                $temp = exec_query($query);
-                                ;
-                                $res = $temp->fetch();
-
+                                $res = exec_query($query);
+                                $res = $res[0];
+                                //exit(var_dump($res));
                                 echo '<tr>
                                     <td colspan="4" class="secondary"><center><b>Total Price</b></center></td>
                                     <td colspan="1" class="secondary"><center><b>'.$res['total'].'</b></center></td>

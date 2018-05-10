@@ -1,4 +1,4 @@
-alter procedure findPromoMax(
+ALTER procedure [dbo].[findPromoMax](
 	@paramToppingPesanan varchar(200)
 )
 as
@@ -61,10 +61,35 @@ as
 	--Menyimpan id yang tidak akan dicek di cursor recursive berikutnya
 	declare @startId int
 	
-	--inisialisasi harga total awal (INT MAX VALUE)
+	--tabel yang menyimpan toping" yang tidak terkena promo apa- apa
+	declare @tabelSisaTopping table(
+		idTopping int
+	)
+
+	insert into @tabelSisaTopping
+	select
+		idTopping
+	from
+		pesananRec
+	where
+		guid = @guidFindPromoMax
+
+	insert into hasilRec
+	select
+		pesananRec.guid, NULL ,pesananRec.idTopping, pesananRec.harga
+	from
+		@tabelSisaTopping as sisa join pesananRec
+	on
+		sisa.idTopping = pesananRec.idTopping
+
+	--inisialisasi harga total awal harga semua topping tanpa diskon
 	insert into totalHargaRec
 	select 
-		@guidFindPromoMax,2147483647
+		@guidFindPromoMax,sum(pesananRec.harga)
+	from
+		@tabelSisaTopping as sisa join pesananRec
+	on
+		sisa.idTopping = pesananRec.idTopping
 
 	--cursor inisialisasi
 	declare recPromo cursor
@@ -96,6 +121,7 @@ as
 			guid = @guidFindPromoMax
 
 		while(@@FETCH_STATUS = 0)begin 
+			delete from @tabelSisaTopping
 			--mencari total saat ini
 			select
 				@total = total
@@ -120,14 +146,25 @@ as
 				tempRec
 			where 
 				guid = @guidFindPromoMax
-			
+
+			--masukkan topping yang belum mendapat diskon ke tempSisaTopping
+			insert into @tabelSisaTopping
+			select distinct 
+				idTopping
+			from
+				pesananRec
+			where
+				pesananRec.guid = @guidFindPromoMax
+				AND
+				idTopping not in (select idTopping from tempRec)
+
 			--Harga topping lainnya yang tidak terkena diskon
 			select 
 				@tempSisa = sum (harga)
 			from
-				pesananRec
-			where
-				idTopping not in(select idTopping from tempRec) AND guid = @guidFindPromoMax
+				@tabelSisaTopping as sisa join pesananRec
+			on
+				sisa.idTopping = pesananRec.idTopping
 			
 			if(@tempSisa is null)set @tempSisa = 0
 			if(@total > @tempTotal + @tempSisa)begin
@@ -136,6 +173,17 @@ as
 				update totalHargaRec
 				set total = @tempTotal + @tempSisa
 				where guid = @guidFindPromoMax
+
+
+				if(@tempSisa != 0)begin
+					insert into hasilRec
+					select
+						guid, NULL,pesananRec.idTopping, harga
+					from
+						@tabelSisaTopping as sisa join pesananRec
+					on
+						sisa.idTopping = pesananRec.idTopping
+				end
 
 				insert into hasilRec
 				select 
@@ -157,8 +205,29 @@ as
 	close recPromo
 	deallocate recPromo
 
-	select * from hasilRec
-	select * from totalHargaRec
+	declare @hasilAkhir table(
+		idPromo int,
+		idTopping int,
+		discount int,
+		hargaAkhir int
+	)
+
+	insert into @hasilAkhir
+	select 
+		idPromo,idTopping,discount,hargaAkhir 
+	from 
+		hasilRec left outer join Promo
+	on
+		hasilRec.idPromo = Promo.ID
+
+	select
+		idTopping,name,price,idPromo,discount,hargaAkhir 
+	from
+		@hasilAkhir as hasil join Topping
+	on
+		hasil.idTopping = Topping.ID
+
+	select total from totalHargaRec
 	--DEBUG!!
 	--select * from PromoValid
 	--select * from pesananRec
@@ -169,4 +238,4 @@ as
 	delete from hasilRec where  guid = @guidFindPromoMax
 	delete from totalHargaRec where guid = @guidFindPromoMax
 
-
+exec findPromoMax '1,2,3'

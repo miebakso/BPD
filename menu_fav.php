@@ -32,30 +32,31 @@
                                 <?php 
                                     $result = exec_query("exec kombinasiToppingFavourite");
                                 ?>
-                                <table class="table ">
-                                    <thead>
-                                        <tr>
-                                            <th>Topping Name</th>
-                                            <th>Topping Price</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php 
-                                        //var_dump($result);
-                                        foreach ($result as $topping){ ?>
+                                <form method="POST" action="order_create.php">
+                                    <table class="table ">
+                                        <thead>
                                             <tr>
-                                                <td><?= $topping['name'] ?></td>
-                                                <td><?= $topping['price'] ?></td>
+                                                <th>Topping Name</th>
+                                                <th>Topping Price</th>
                                             </tr>
-                                        <?php }?>
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            <?php 
+                                            //var_dump($result);
+                                            foreach ($result as $topping){ ?>
+                                                <tr>
+                                                    <td><?= $topping['name'] ?></td>
+                                                    <td><?= $topping['price'] ?></td>
+                                                    <input type="hidden" name="topping_fav[]" value="<?=$topping['ID']?>">
+                                                </tr>
+                                            <?php }?>
+                                        </tbody>
+                                    </table>
+                                    <input type="hidden" name="customer_name" value="<?= $_POST['name']?>">
+                                    <input type="submit" name="option" value="yes" class="btn btn-info pull-left m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">
+                                    <input type="submit" name="option" value="no" class="btn btn-info pull-left m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">
+                                </form> 
                             </div>
-                            <form>
-                                <input type="hidden" value="<?= $_POST['name']?>">
-                                <a href="order_create.php?option=yes" class="btn btn-info pull-left m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">MAU</a>
-                                <a href="order_create.php?option=no" class="btn btn-info pull-left m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">TIDAK</a>
-                            </form> 
                             
                         </div>
                     </div>
