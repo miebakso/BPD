@@ -85,6 +85,12 @@ from
 where
 	temp.topping_id NOT in (select temp2.topping_id from @tbl_temp as temp2)
 
+declare @hasil table(
+	topping_id int,
+	jumlah int
+)
+
+insert into @hasil
 select top 1
 	topping_id as rekomendasi_topping,
 	count (topping_id) as jumlah
@@ -93,6 +99,13 @@ from
 group by 
 	topping_id
 order by jumlah desc
+
+select
+	Topping.ID, Topping.name, Topping.price
+from
+	@hasil as hasil join Topping
+on
+	hasil.topping_id = Topping.ID
 
 --select * from OrderTopping
 --select * from CustomerOrder
