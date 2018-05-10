@@ -1,4 +1,4 @@
-alter procedure findPromoMax(
+ALTER procedure [dbo].[findPromoMax](
 	@paramToppingPesanan varchar(200)
 )
 as
@@ -157,8 +157,39 @@ as
 	close recPromo
 	deallocate recPromo
 
-	select * from hasilRec
-	select * from totalHargaRec
+	declare @hasilAkhir table(
+		idTopping int,
+		name varchar(200),
+		price int,
+		idPromo int,
+		discount int,
+		hargaAkhir int
+	)
+
+	insert into @hasilAkhir
+	select 
+		idTopping,'',0,idPromo,discount,hargaAkhir 
+	from 
+		hasilRec join Promo
+	on
+		hasilRec.idPromo = Promo.ID
+	where
+		hasilRec.guid = @guidFindPromoMax
+
+	update @hasilAkhir
+	set name = Topping.name, price = Topping.price
+	from
+		@hasilAkhir as hasil join Topping
+	on
+		hasil.idTopping = Topping.ID
+
+	select
+		idTopping,name,price,idPromo,discount,hargaAkhir, total
+	from
+		@hasilAkhir cross join totalHargaRec
+	where
+		totalHargaRec.guid = @guidFindPromoMax
+
 	--DEBUG!!
 	--select * from PromoValid
 	--select * from pesananRec
@@ -168,5 +199,4 @@ as
 	delete from tempRec where guid = @guidFindPromoMax
 	delete from hasilRec where  guid = @guidFindPromoMax
 	delete from totalHargaRec where guid = @guidFindPromoMax
-
 
