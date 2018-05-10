@@ -54,6 +54,7 @@
                                             </thead>
                                             <tbody>
                                                 <?php
+                                                
                                                 $diskon = exec_multiple_query("exec findPromoMax '$topping'");
                                                 //exit(var_dump($diskon));
                                                 foreach ($diskon[0] as $hasilDisc){?>
@@ -70,7 +71,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4"><h3>Total Bayar</h3></div>
-                                    <div class="col-md-8"><h3><center><?=$diskon[1]['total']?></center></h3></div>
+                                    <div class="col-md-8"><h3><center><?=$diskon[1][0]['total']?></center></h3></div>
                                 </div>
                                <button type="submit" name="optionSetuju" class="btn btn-primary">SETUJU</button>
                                <button type="submit" name="optionTdkSetuju" class="btn btn-primary">TIDAK</button>
