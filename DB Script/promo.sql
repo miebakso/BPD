@@ -2,12 +2,6 @@
 # SELECT ################################################################################
 
 
-# CREATE TABLE Promo(
-# 	ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-# 	name varchar(100) NOT NULL,
-# 	promo_status INT NOT NULL,
-# 	discount FLOAT NOT NULL
-# )
 
 CREATE PROCEDURE select_promo
 	@option varchar(100)
@@ -20,6 +14,8 @@ as
 			Promo
 		WHERE 
 			promo_status=1
+		ORDER BY
+			ID DESC
 	end
 	else if(@option='inactive')
 	begin
@@ -29,6 +25,8 @@ as
 			Promo
 		WHERE
 			promo_status=0
+		ORDER BY
+			ID DESC
 	end
 	else
 	begin
@@ -36,12 +34,46 @@ as
 			*
 		FROM
 			Promo
+		ORDER BY
+			ID DESC
 	end
 
 # INSERT ################################################################################
+
 CREATE PROCEDURE insert_promo
 	@name varchar(100),
-	@discount float,
-	@topping_ids varchar(100),
+	@discount float
 as
+	INSERT INTO Promo (name,promo_status,discount) 
+	VALUES (@name,1,@discount)
 	
+	SELECT SCOPE_IDENTITY() AS ID
+	
+# SELECT BY ID ################################################################################
+
+CREATE PROCEDURE select_promo_by_id
+	@id int
+as
+	SELECT
+		*
+	FROM
+		Promo
+	WHERE 
+		ID = @id
+
+# UPDATE PROMO BY ID ################################################################################
+
+CREATE PROCEDURE update_promo_by_id
+	@ID int,
+	@name varchar(100),
+	@discount float,
+	@promo_status int
+as
+	UPDATE
+		Promo
+	SET 
+		name=@name,
+		discount=@discount,
+		promo_status=@promo_status
+	WHERE
+		ID = @ID
