@@ -30,7 +30,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="white-box">
-                            <form method="POST" action="order_create_final.php">
+                            <form id= "form_order_confirmation" method="POST" action="insert_order_data.php">
                                 <?php 
                                     $topping = implode(',', $_POST['topping']);
                                     //echo $topping;
@@ -39,6 +39,7 @@
                                 <div class="row">
                                     <div class="col-md-2"><h3>Total Harga</h3></div>
                                     <div class="col-md-2"><h3><center><?=$result[0]['total']?></center></h3></div>
+                                    <input type="hidden" name= "total_price" value=<?= $result[0]['total'] ?>>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4"><h3>Total Diskon</></h3></div>
@@ -60,8 +61,11 @@
                                                 foreach ($diskon[0] as $hasilDisc){?>
                                                     <tr>
                                                         <td><?= $hasilDisc['name'] ?></td>
+                                                        <input type="hidden" name="topping_id[]" value="<?= $hasilDisc['idTopping']?>">
                                                         <td><?= $hasilDisc['price'] ?></td>
+                                                        <input type="hidden" name="topping_price[]" value="<?= $hasilDisc['price']?>">
                                                         <td><?= $hasilDisc['discount'] ?></td>
+                                                        <input type="hidden" name="topping_discount[]" value="<?= $hasilDisc['discount']?>">
                                                         <td><?= $hasilDisc['hargaAkhir'] ?></td>
                                                     </tr>
                                                 <?php }?>
@@ -72,9 +76,11 @@
                                 <div class="row">
                                     <div class="col-md-4"><h3>Total Bayar</h3></div>
                                     <div class="col-md-8"><h3><center><?=$diskon[1][0]['total']?></center></h3></div>
+                                    <input type="hidden" name= "total_discounted" value=<?= $diskon[1][0]['total'] ?>>
                                 </div>
-                               <button type="submit" name="optionSetuju" class="btn btn-primary">SETUJU</button>
-                               <button type="submit" name="optionTdkSetuju" class="btn btn-primary">TIDAK</button>
+                                <input type="hidden" name="customer_name" value="<?= $_POST['customer_name']?>">
+                               <button id="btn_yes" type="submit" name="optionSetuju" class="btn btn-primary btn_submit">SETUJU</button>
+                               <button id="btn_no" type="submit" name="optionTdkSetuju" class="btn btn-primary btn_submit">TIDAK</button>
                            </form>
                         </div>
                     </div>
@@ -89,6 +95,24 @@
     <!-- /#wrapper 12321321-->
     <!-- jQuery -->
     <?php require "component/script.php" ?>
+    <script>
+        $(document).ready(function(){
+            var buttonpressed;
+            $('.btn_submit').click(function() {
+                buttonpressed = $(this).attr('id')
+            })
+
+            $('#form_order_confirmation').submit(function() {
+                console.log(buttonpressed);
+                if(buttonpressed=='btn_yes'){
+                    return true;
+                }else{
+                    window.location.replace("order.php");
+                }
+                return false; // return false to cancel form action
+            });
+        })
+    </script>
 </body>
 
 </html>

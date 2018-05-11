@@ -127,6 +127,7 @@
                                     </tbody>
                                 </table>
                                 <button type="submit" class="btn btn-primary">Submit</button>
+                                <input type="hidden" name="customer_name" value="<?= $_POST['customer_name']?>">
                             </form>
                         </div>                               
                     </div>

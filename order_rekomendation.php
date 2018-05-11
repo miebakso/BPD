@@ -50,7 +50,7 @@
                                     <input type="hidden" name="topping[]" value="<?=$topping?>">
                                 <?php }?>
                                 <div class="row">
-                                    <input type="hidden" name="customer_name" value="<?= $_POST['name']?>">
+                                    <input type="hidden" name="customer_name" value="<?= $_POST['customer_name']?>">
                                     <input id="btn_yes" type="submit" name="option" value="yes" class="btn btn-info pull-left m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light btn_submit">
                                     <?php if($result){?>
                                     <input id="btn_no" type="submit" name="option" value="no" class="btn btn-info pull-left m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light btn_submit">
