@@ -33,7 +33,7 @@
                             <form method="POST" action="order_create_final.php">
                                 <?php 
                                     $topping = implode(',', $_POST['topping']);
-                                    echo $topping;
+                                    //echo $topping;
                                     $result = exec_query("exec hitungHargaTotal '$topping'");
                                 ?>
                                 <div class="row">
