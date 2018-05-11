@@ -30,7 +30,7 @@ CREATE TABLE Promo(
 	ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	name varchar(100) NOT NULL,
 	promo_status INT NOT NULL,
-	discount FLOAT NOT NULL
+	discount float NOT NULL
 )
 
 CREATE TABLE OrderTopping(
@@ -127,6 +127,7 @@ Insert into OrderTopping (order_id, topping_id, topping_price, discount)
 values (1 , 2, 6500, 10);
 Insert into OrderTopping (order_id, topping_id, topping_price, discount) 
 values (1 , 3, 5000, 30);
+
 Insert into OrderTopping (order_id, topping_id, topping_price) 
 values (2 , 2, 6500);
 Insert into OrderTopping (order_id, topping_id, topping_price) 

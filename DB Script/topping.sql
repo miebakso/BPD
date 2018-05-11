@@ -36,8 +36,10 @@ as
 			Topping
 		WHERE 
 			status=1
+		ORDER BY
+			name ASC
 	end
-	elseif(@option='inactive')
+	else if(@option='inactive')
 	begin
 		SELECT
 			*
@@ -45,6 +47,8 @@ as
 			Topping
 		WHERE
 			status=0
+		ORDER BY
+			name ASC
 	end
 	else
 	begin
@@ -52,6 +56,8 @@ as
 			*
 		FROM
 			Topping
+		ORDER BY
+			name ASC
 	end
 
 # INACTIVE or ACTIVE #######################################################################

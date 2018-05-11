@@ -11,7 +11,7 @@
                 <a href="topping.php?option=active" class="waves-effect"><i class="fa fa-star fa-fw" aria-hidden="true"></i><span class="hide-menu">Topping</span></a>
             </li>
             <li>
-                <a href="promo.php " class="waves-effect"><i class="fa fa-tags fa-fw" aria-hidden="true"></i><span class="hide-menu">Promo</span></a>
+                <a href="promo.php?option=active" class="waves-effect"><i class="fa fa-tags fa-fw" aria-hidden="true"></i><span class="hide-menu">Promo</span></a>
             </li>
         </ul>
     </div>
