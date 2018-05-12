@@ -2,10 +2,7 @@
 
 <?php require "component/header.php" ?>
 <?php require "component/connection.php" ?>
-<?php
-    // insert customerOuder data 
-    //$result = exec_query("exec insert_customerOrder '".$_POST['name']."'");
-?>
+
 <body>
     
     <div id="wrapper">

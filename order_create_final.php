@@ -2,13 +2,7 @@
 
 <?php require "component/header.php" ?>
 <?php require "component/connection.php" ?>
-<?php
-    
-    $customer_id = exec_query("exec get_last_customer_id");
-    //foreach($_POST['topping']as $_top){
-        
-    //}
-?>
+
 <body>
     
     <div id="wrapper">
