@@ -1,6 +1,6 @@
 -- Fungsi untuk menghitung profit dari faktur yang ada pada rentang saat ini
 -- parameter dua buah tanggal yang merupakan rentang tanggal untuk dilakukan perhitungan profit
-alter procedure hitungPendapatan
+create procedure hitungPendapatan
 (
 	@from_date date,
 	@end_date date
@@ -32,5 +32,4 @@ alter procedure hitungPendapatan
 	--kembalikan nilai dari total seluruh penjualan dikurangi dengan total diskon setiap penjualan
 	select @total_p as total, @total_dis as discount , (@total_p - @total_dis) as total_profit
 
-exec hitungPendapatan '2018-01-01', '2019-01-01'
---select * from CustomerOrder
+--exec hitungPendapatan '2018-01-01', '2019-01-01'

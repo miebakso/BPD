@@ -1,7 +1,7 @@
 --SP untuk mencari pesangan dengan toping yang diinginkan.
 --Parameter masukan adalah varchar id toping dipisahkan dengan koma
 
-alter procedure rekomendasi 
+create procedure rekomendasi 
 	@param_order_id varchar(200)
 as
 
@@ -109,4 +109,4 @@ on
 
 --select * from OrderTopping
 --select * from CustomerOrder
-exec rekomendasi '1,2'
+--exec rekomendasi '1,2'

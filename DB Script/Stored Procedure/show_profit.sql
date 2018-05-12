@@ -1,4 +1,5 @@
-alter procedure show_profit
+--sp ini dibuat untuk menghitung pendapatan dikelompokkan berdasarkan tahun dan bulannya
+create procedure show_profit
 as
 select 
 	datepart(year,order_date) as year , datepart(month,order_date)as month, datename(month,order_date) as name_of_month,
@@ -9,4 +10,4 @@ group by
 order by
 	year desc, month asc
 
-exec show_profit
+--exec show_profit

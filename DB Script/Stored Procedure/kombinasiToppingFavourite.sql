@@ -1,6 +1,6 @@
 --sp ini digunakan untuk mencari kombinasi topping tambahan yang paling sering dibeli
 
-alter procedure kombinasiToppingFavourite
+create procedure kombinasiToppingFavourite
 as
 
 --tabel ini digunakan untuk menyimpan id topping setiap order
@@ -90,4 +90,4 @@ from
 	dbo.splitId(@res)as temp inner join Topping
 	on temp.id = Topping.ID
 
-exec kombinasiToppingFavourite
+--exec kombinasiToppingFavourite
