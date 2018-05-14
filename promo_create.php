@@ -7,6 +7,6 @@
 		exec_query("exec insert_promo_topping ".$p_id.",".$id);
 	}
 
-	header('Location: http://localhost/PBD/promo.php');
+	header('Location: http://localhost/PBD/promo.php?option=active');
     die();
 ?>
