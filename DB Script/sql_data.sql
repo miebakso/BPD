@@ -70,6 +70,7 @@ DELETE FROM ToppingPromo
 ------------------------------------------------------------------------------------------
 INSERT
 ------------------------------------------------------------------------------------------
+--data dummy untuk tabel Topping
 INSERT INTO Topping (name,price,status) values ( 'kornet' , 9200, 1 )
 INSERT INTO Topping (name,price,status) values ( 'keju' , 6500 , 1)
 INSERT INTO Topping (name,price,status) values ( 'pisang' , 5000 , 1)
@@ -81,8 +82,7 @@ INSERT INTO Topping (name,price,status) values ( 'telor' , 2200 , 1)
 INSERT INTO Topping (name,price,status) values ( 'kremesan' , 10300, 1 )
 INSERT INTO Topping (name,price,status) values ( 'daging cincang' , 10900, 1 )
 
-Update Topping set status = 0 where name = 'daging cincang'
-
+--data dummy untuk tabel Promo
 INSERT INTO Promo (name,promo_status,discount) values ( 'pisang' , 1, 13 )
 INSERT INTO Promo (name,promo_status,discount) values ( 'sawi', 1, 23 )
 INSERT INTO Promo (name,promo_status,discount) values ( 'coklat' , 0 ,34 )
@@ -98,6 +98,7 @@ INSERT INTO Promo (name,promo_status,discount) values ( 'kremesan daging cincang
 INSERT INTO Promo (name,promo_status,discount) values ( 'tohai telor' , 1 ,33 )
 INSERT INTO Promo (name,promo_status,discount) values ( 'sawi coklat' , 1 ,33 )
 
+--data dummy untuk tabel ToppingPromo
 INSERT INTO ToppingPromo (topping_id, promo_id) values (3,1)
 INSERT INTO ToppingPromo (topping_id, promo_id) values (7,2)
 INSERT INTO ToppingPromo (topping_id, promo_id) values (5,3)
@@ -121,6 +122,7 @@ INSERT INTO ToppingPromo (topping_id, promo_id) values (8,13)
 INSERT INTO ToppingPromo (topping_id, promo_id) values (5,14)
 INSERT INTO ToppingPromo (topping_id, promo_id) values (7,14)
 
+--data dummy untuk tabel OrderTopping
 Insert into OrderTopping (order_id, topping_id, topping_price, discount) 
 values (1 , 1, 9200, 10);
 Insert into OrderTopping (order_id, topping_id, topping_price, discount) 
@@ -128,47 +130,89 @@ values (1 , 2, 6500, 10);
 Insert into OrderTopping (order_id, topping_id, topping_price, discount) 
 values (1 , 3, 5000, 30);
 
-Insert into OrderTopping (order_id, topping_id, topping_price) 
-values (2 , 2, 6500);
-Insert into OrderTopping (order_id, topping_id, topping_price) 
-values (2 , 3, 5000);
-Insert into OrderTopping (order_id, topping_id, topping_price) 
-values (3 , 2, 6500);
-Insert into OrderTopping (order_id, topping_id, topping_price) 
-values (4 , 4, 1700);
-Insert into OrderTopping (order_id, topping_id, topping_price) 
-values (4 , 5, 8800);
-Insert into OrderTopping (order_id, topping_id, topping_price) 
-values (5 , 1, 9200);
-Insert into OrderTopping (order_id, topping_id, topping_price) 
-values (5 , 2, 6500);
-Insert into OrderTopping (order_id, topping_id, topping_price) 
-values (5 , 3, 5000);
+Insert into OrderTopping (order_id, topping_id, topping_price, discount) 
+values (2 , 2, 6500, 5);
+Insert into OrderTopping (order_id, topping_id, topping_price, discount) 
+values (2 , 3, 5000, 15);
+Insert into OrderTopping (order_id, topping_id, topping_price, discount) 
+values (3 , 2, 6500, 20);
+Insert into OrderTopping (order_id, topping_id, topping_price, discount) 
+values (4 , 4, 1700, 10);
+Insert into OrderTopping (order_id, topping_id, topping_price, discount) 
+values (4 , 5, 8800, 7);
+Insert into OrderTopping (order_id, topping_id, topping_price, discount) 
+values (5 , 1, 9200, 23);
+Insert into OrderTopping (order_id, topping_id, topping_price, discount) 
+values (5 , 2, 6500, 19);
+Insert into OrderTopping (order_id, topping_id, topping_price, discount) 
+values (5 , 3, 5000, 12);
 
-INSERT INTO CustomerOrder (order_date, customer_name, total_price, total_discounted_price)
-VALUES (CURRENT_TIMESTAMP,'Matthew Kampret' , 0 , 0);
-INSERT INTO CustomerOrder (order_date, customer_name, total_price, total_discounted_price)
-VALUES (CURRENT_TIMESTAMP,'Matthew Bangsat' , 0 , 0);
-INSERT INTO CustomerOrder (order_date, customer_name, total_price, total_discounted_price)
-VALUES (CURRENT_TIMESTAMP,'Kampret Ariel' , 0 , 0);
-INSERT INTO CustomerOrder (order_date, customer_name, total_price, total_discounted_price)
-VALUES (CURRENT_TIMESTAMP,'Bangsat Ariel' , 0 , 0);
-INSERT INTO CustomerOrder (order_date, customer_name, total_price, total_discounted_price)
-VALUES (CURRENT_TIMESTAMP,'Matthew Taiks' , 0 , 0);
-
+--data dummy untuk tabel CustomerOrder
 insert into CustomerOrder 
 select '2018-06-01','Irvan',10000,1000
 insert into CustomerOrder 
-select '2018-06-02','Gendut',25000,1000
+select '2018-06-02','Ida',25000,1000
 insert into CustomerOrder 
-select '2018-06-03','Bureger king',8000,1000
-
+select '2018-06-03','Suro',8000,1000
 insert into CustomerOrder 
 select '2018-07-01','Matthew',7000,1000
 insert into CustomerOrder 
-select '2018-07-02','Sukawarna',15000,1000
+select '2018-07-02','Hananta',15000,1000
 insert into CustomerOrder 
-select '2018-07-03','Orderan',8000,1000
+select '2018-07-03','Budi',8000,1000
+insert into CustomerOrder 
+select '2018-05-01','Yoseph',24000,6000
+insert into CustomerOrder 
+select '2018-05-20','Yosua',17000,3500
+insert into CustomerOrder 
+select '2018-05-10','Yakobus',33000,8000
+insert into CustomerOrder 
+select '2018-04-11','Fitra',24000,6000
+insert into CustomerOrder 
+select '2018-04-17','Uut',11000,3500
+insert into CustomerOrder 
+select '2018-04-10','Yohanes',15000,8000
+insert into CustomerOrder 
+select '2018-03-01','Martin',14000,3000
+insert into CustomerOrder 
+select '2018-03-20','Beti',17000,3500
+insert into CustomerOrder 
+select '2018-02-10','Idong',30000,6500
+insert into CustomerOrder 
+select '2018-02-01','Ogah',24000,4000
+insert into CustomerOrder 
+select '2018-02-20','Woro',29000,3500
+insert into CustomerOrder 
+select '2018-01-10','Sisil',27000,6000
+
+insert into CustomerOrder 
+select '2017-12-03','Dinda', 15000,6000
+insert into CustomerOrder 
+select '2017-12-14','Agung',22000,5500
+insert into CustomerOrder 
+select '2017-11-12','Udi',12000,6000
+insert into CustomerOrder 
+select '2017-11-11','Bagas',9000,8000
+insert into CustomerOrder 
+select '2017-10-05','Bimo',17000,3500
+insert into CustomerOrder 
+select '2017-9-04','Iraffdi',19000,7000
+insert into CustomerOrder 
+select '2017-9-02','Oman',23000,7000
+insert into CustomerOrder 
+select '2017-08-03','Uus', 14000,5000
+insert into CustomerOrder 
+select '2017-08-14','Maman',17000,5500
+insert into CustomerOrder 
+select '2017-08-12','Anto',11000,4000
+insert into CustomerOrder 
+select '2017-07-11','Oman',9000,9000
+insert into CustomerOrder 
+select '2017-07-05','Subroto',11000,8000
+insert into CustomerOrder 
+select '2017-06-04','Bagus',14000,7000
+insert into CustomerOrder 
+select '2017-06-01','Selvi',30000,6000
 
 ------------------------------------------------------------------------------------------
 CONTOH KASUS 
