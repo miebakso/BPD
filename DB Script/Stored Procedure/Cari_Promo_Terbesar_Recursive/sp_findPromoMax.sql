@@ -50,7 +50,7 @@ as
 	--mencari promo yang dapat digunakan berdasar promo yang tidak dapat digunakan
 	insert into PromoValid
 		select 
-			@guidFindPromoMax ,promoAktif.idTopping, idPromo, harga - (harga* promoAktif.discount)/100
+			@guidFindPromoMax , idPromo , promoAktif.idTopping , harga - (harga* promoAktif.discount)/100
 		from
 			@topingPromoAktif as promoAktif join pesananRec as pesanan
 		on

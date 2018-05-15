@@ -80,6 +80,16 @@ INSERT INTO Topping (name,price,status) values ( 'tohai' , 2500 , 1)
 INSERT INTO Topping (name,price,status) values ( 'sawi' , 1200 , 1)
 INSERT INTO Topping (name,price,status) values ( 'telor' , 2200 , 1)
 INSERT INTO Topping (name,price,status) values ( 'kremesan' , 10300, 1 )
+INSERT INTO Topping (name,price,status) values ( 'nanas' , 7000, 1 )
+INSERT INTO Topping (name,price,status) values ( 'teriyaki' , 11000, 1 )
+INSERT INTO Topping (name,price,status) values ( 'pepperoni' , 11000, 1 )
+INSERT INTO Topping (name,price,status) values ( 'sosis' , 11000, 1 )
+INSERT INTO Topping (name,price,status) values ( 'jamur' , 9000, 1 )
+INSERT INTO Topping (name,price,status) values ( 'salada' , 1200, 1 )
+INSERT INTO Topping (name,price,status) values ( 'rebung' , 7000, 0 )
+INSERT INTO Topping (name,price,status) values ( 'nasi' , 4000, 1 )
+INSERT INTO Topping (name,price,status) values ( 'matcha' , 7000, 0 )
+INSERT INTO Topping (name,price,status) values ( 'oreo' , 5000, 0 )
 INSERT INTO Topping (name,price,status) values ( 'daging cincang' , 10900, 1 )
 
 --data dummy untuk tabel Promo
@@ -216,8 +226,8 @@ select '2017-06-01','Selvi',30000,6000
 
 ------------------------------------------------------------------------------------------
 CONTOH KASUS 
---kremesan dan telor = 11% : 1875, kalo masing masing = 242 + 2060
--- sawi dan coklat = 33" : 3300, kalo masing masing = 2992 + 276
+--kremesan dan telor = 15% : harga akhir = 10625, kalo masing masing = 242 + 2060
+-- sawi dan coklat = 33% : 6700, sawi saja=276
 ------------------------------------------------------------------------------------------
 
 ------------------------------------------------------------------------------------------
@@ -225,10 +235,9 @@ SELECT
 ------------------------------------------------------------------------------------------
 select * from Topping
 select * from Promo
-SELECT * from ToppingPromo having count(promo_id)  > 1
-select sum(Topping.price) from ToppingPromo inner join Topping where ToppingPromo.topping_id = Topping.id group by ToppingPromo.promo_id
-dll
-
+select * from ToppingPromo
+select * from CustomerOrder
+select * from OrderTopping
 
 
 --------------------------------------------------------------------------------------------
