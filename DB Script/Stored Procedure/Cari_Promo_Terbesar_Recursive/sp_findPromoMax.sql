@@ -1,4 +1,4 @@
-ALTER procedure [dbo].[findPromoMax](
+ALTER procedure findPromoMax(
 	@paramToppingPesanan varchar(200)
 )
 as
@@ -238,4 +238,4 @@ as
 	delete from hasilRec where  guid = @guidFindPromoMax
 	delete from totalHargaRec where guid = @guidFindPromoMax
 
-exec findPromoMax '1,2,3'
+exec findPromoMax '8,9'

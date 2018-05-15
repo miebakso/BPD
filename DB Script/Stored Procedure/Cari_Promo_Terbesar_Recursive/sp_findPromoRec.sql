@@ -1,4 +1,4 @@
-ALTER procedure [dbo].[findPromoRec](
+ALTER procedure findPromoRec(
 	@startID int,
 	@guid varchar(255),
 	@bigestID int
@@ -158,4 +158,3 @@ as
 		deallocate recPromo
 
 	end
-
