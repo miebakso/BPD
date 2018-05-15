@@ -158,24 +158,20 @@ Insert into OrderTopping (order_id, topping_id, topping_price, discount)
 values (5 , 3, 5000, 12);
 
 --data dummy untuk tabel CustomerOrder
-insert into CustomerOrder 
-select '2018-06-01','Irvan',10000,1000
-insert into CustomerOrder 
-select '2018-06-02','Ida',25000,1000
-insert into CustomerOrder 
-select '2018-06-03','Suro',8000,1000
-insert into CustomerOrder 
-select '2018-07-01','Matthew',7000,1000
-insert into CustomerOrder 
-select '2018-07-02','Hananta',15000,1000
-insert into CustomerOrder 
-select '2018-07-03','Budi',8000,1000
+
+
 insert into CustomerOrder 
 select '2018-05-01','Yoseph',24000,6000
 insert into CustomerOrder 
-select '2018-05-20','Yosua',17000,3500
+select '2018-05-12','Yosua',17000,3500
 insert into CustomerOrder 
 select '2018-05-10','Yakobus',33000,8000
+insert into CustomerOrder 
+select '2018-05-01','Matthew',7000,1000
+insert into CustomerOrder 
+select '2018-04-02','Hananta',15000,1000
+insert into CustomerOrder 
+select '2018-04-03','Budi',8000,1000
 insert into CustomerOrder 
 select '2018-04-11','Fitra',24000,6000
 insert into CustomerOrder 
@@ -192,6 +188,12 @@ insert into CustomerOrder
 select '2018-02-01','Ogah',24000,4000
 insert into CustomerOrder 
 select '2018-02-20','Woro',29000,3500
+insert into CustomerOrder 
+select '2018-02-01','Irvan',10000,1000
+insert into CustomerOrder 
+select '2018-01-02','Ida',25000,1000
+insert into CustomerOrder 
+select '2018-01-03','Suro',8000,1000
 insert into CustomerOrder 
 select '2018-01-10','Sisil',27000,6000
 

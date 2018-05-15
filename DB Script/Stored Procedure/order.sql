@@ -7,6 +7,7 @@ as
 		id, customer_name, order_date, total_price, total_discounted_price
 	from
 		CustomerOrder
+	order by order_date desc
 
 ------------------------------------------------------------------------------------
 --SP untuk mencari semua topping yang dipesan pada suatu order
